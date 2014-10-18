@@ -39,5 +39,28 @@ public class CalculatorTest {
     	assertEquals(3, Calculator.add("//;\n1;2"));
     }
 
-    
+    @Test(expected = RuntimeException.class)
+    public void testThrowException(){
+    	Calculator.add("-1,2");
+    }
+
+    @Test
+    public void testNegativeNumber(){
+    	try{
+    		Calculator.add("-1,2");
+    	}
+    	catch (RuntimeException e){
+    		assertEquals("Negatives not allowed: -1", e.getMessage());
+    	}
+    }
+
+    @Test
+    public void testMultipleNegativeNumbers(){
+    	try{
+    		Calculator.add("2,-4,3,-5");
+    	}
+    	catch (RuntimeException e){
+    		assertEquals("Negatives not allowed: -4, -5", e.getMessage());
+    	}
+    }
 }

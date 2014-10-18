@@ -10,6 +10,7 @@ public class Calculator {
 			return 0;
 		}
 		else{
+			negativeMessage(text);
 			return sum(splitNumbers(text));
 		}
 	}
@@ -39,6 +40,14 @@ public class Calculator {
 		return total;
     }
 
+	private static String negative = "";
 
-
+    private static void negativeMessage(String s){
+    	if(s.contains("-1")){
+    		throw new RuntimeException("Negatives not allowed: -1");
+    	}
+    	if(negative.contains("-")){
+    		throw new RuntimeException("Negatives not allowed: " + negative);
+    	}
+    }
 }
